@@ -1,0 +1,13 @@
+STORIES DO INSTAGRAM (imagem: instagram-stories.png, 1080x1920)
+
+Sticker de link
+  Link: https://gabrielsouto.github.io/bandeira2
+  Texto do sticker: JOGAR BANDEIRA 2
+  Onde pôr: logo abaixo do botão amarelo "JOGUE AGORA", no espaço escuro.
+
+Enquete (opcional, num segundo stories)
+  Pergunta: Que carro você pegaria?
+  Opções: Rebu / Táxi / Moto / euComida
+
+Texto curto (se for repostar no feed ou mandar no direct)
+  Fiz um jogo de motorista de aplicativo em pixel art 🚕 Pegue corridas, fuja da polícia e dispute passageiro com os amigos. Grátis, direto no navegador. Link nos stories!

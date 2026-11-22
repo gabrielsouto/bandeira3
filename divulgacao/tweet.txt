@@ -1,0 +1,8 @@
+Fiz um jogo de motorista de aplicativo em pixel art 🚕
+
+Pegue corridas, fuja da polícia, entregue açaí antes de derreter e dispute passageiro com até 3 amigos na mesma cidade.
+
+Grátis, direto no navegador 👇
+https://gabrielsouto.github.io/bandeira2
+
+#gamedev #indiedev #pixelart

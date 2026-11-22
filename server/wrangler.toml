@@ -1,0 +1,15 @@
+# Servidor das salas do multiplayer do Bandeira 2.
+# Local:   npm run dev      (http://localhost:8787)
+# Publicar: npm run deploy  (precisa de conta Cloudflare; plano grátis)
+name = "bandeira3-servidor"
+main = "src/index.js"
+compatibility_date = "2025-10-01"
+
+[[durable_objects.bindings]]
+name = "SALAS"
+class_name = "Sala"
+
+# No plano grátis o Durable Object precisa usar armazenamento SQLite.
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Sala"]

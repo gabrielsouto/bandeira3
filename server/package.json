@@ -1,0 +1,15 @@
+{
+  "name": "bandeira2-servidor",
+  "private": true,
+  "type": "module",
+  "description": "Servidor das salas do multiplayer do Bandeira 2 (Cloudflare Durable Objects).",
+  "scripts": {
+    "dev": "wrangler dev --port 8787",
+    "deploy": "wrangler deploy",
+    "fumaca": "node test/fumaca.mjs",
+    "test": "node --test test/"
+  },
+  "devDependencies": {
+    "wrangler": "4.165.0"
+  }
+}

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bandeira 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="world3d" data-camera="top" aria-label="Cidade 3D com câmera de cima"></canvas>
+<canvas id="game" hidden></canvas>
+
+<div id="hud" class="hidden">
+  <div id="topleft">
+    <div id="money">R$ 0,00</div>
+    <div id="rating"></div>
+    <div id="aura"></div>
+    <div id="netinfo" class="hidden"></div>
+  </div>
+
+  <div id="mapbox" class="panel">
+    <canvas id="minimap"></canvas>
+    <div class="legend"><span><i class="lg-posto"></i>posto</span><span><i class="lg-ofi"></i>oficina</span><span><i class="lg-lava"></i>lava jato</span><span id="lgcasa"><i class="lg-casa"></i>casa</span><span id="lgrecarga"><i class="lg-recarga"></i>recarga</span><span id="lgfarmacia" class="hidden"><i class="lg-farmacia"></i>farmácia</span><span id="lgrest" class="hidden"><i class="lg-rest"></i>restaurante</span><span id="lghub" class="hidden"><i class="lg-hub"></i>galpão</span><span id="lgstops" class="hidden"><i class="lg-stops"></i>paradas</span><span id="lgsurge"><i class="lg-surge"></i>dinâmica</span><span><i class="lg-risk"></i>risco</span></div>
+  </div>
+
+  <div id="dash" class="panel">
+    <div id="speed"><span id="spd">0</span><small>km/h</small><span id="easytag" class="hidden">FÁCIL</span></div>
+    <div class="bar"><label id="fuellbl">COMBUST.</label><div class="track"><div id="fuelbar" class="fill"></div></div></div>
+    <div class="bar"><label>LATARIA</label><div class="track"><div id="hpbar" class="fill"></div></div></div>
+    <div class="bar"><label>DESGASTE</label><div class="track"><div id="wearbar" class="fill"></div></div></div>
+    <div class="bar" id="tempwrap"><label>TEMP.</label><div class="track"><div id="tempbar" class="fill"></div></div></div>
+    <div id="radio"></div>
+    <div id="problems"></div>
+  </div>
+
+  <div id="phone">
+    <div class="appbar"><span id="appname">REBU</span><span id="clock">07:00</span>
+    </div>
+    <div id="phonebody"></div>
+    <div id="offertime" hidden><div class="ph-timer" aria-hidden="true"><div></div></div><span id="offerleft"></span></div>
+    <div id="phoneactions"></div>
+    <button id="jobbtn" class="ghost"><kbd>J</kbd> Trocar modalidade</button>
+  </div>
+
+  <div id="roompanel" class="panel hidden"></div>
+  <div id="toasts"></div>
+  <div id="help">WASD/setas dirigir · Espaço freio de mão · E aceitar · Q recusar · C cancelar · H buzina · R rádio · J modalidade · B casa · O oficina · P posto · Esc ajuda e serviços</div>
+</div>
+
+<div id="modal" class="hidden"><div id="modalbox" class="panel" role="dialog" aria-modal="true" aria-labelledby="modaltitle" tabindex="-1"></div></div>
+<main id="title" aria-labelledby="game-title">
+  <div class="tbox panel">
+    <header class="title-header">
+      <h1 id="game-title">BANDEIRA 3</h1>
+      <p>Corridas, entregas e trânsito · Câmera de cima.</p>
+    </header>
+    <details id="vehpick">
+      <summary>
+        <canvas id="vehpreview" width="44" height="24" aria-hidden="true"></canvas>
+        <span class="vehicle-info">
+          <span class="vehicle-label">Seu veículo</span>
+          <strong id="vehname" aria-live="polite"></strong>
+        </span>
+        <span class="disclosure vehicle-action">Trocar</span>
+      </summary>
+      <div id="vehbtns" role="group" aria-label="Veículos disponíveis"></div>
+    </details>
+    <p id="vehdesc"></p>
+    <button id="startbtn"><span>Começar</span><kbd aria-hidden="true">Enter</kbd></button>
+    <div class="title-tools">
+      <button id="easybtn" class="ghost" aria-pressed="false"><span class="easy-indicator" aria-hidden="true"></span>Direção fácil</button>
+      <a id="helplink" href="ajuda.html" target="_blank" rel="noopener">Controles e regras</a>
+    </div>
+    <details id="multibox" class="hidden">
+      <summary class="disclosure">Jogar com amigos</summary>
+      <div id="multiform">
+        <div class="mb-row"><label for="nick">Apelido</label><input id="nick" maxlength="12" autocomplete="off" spellcheck="false"></div>
+        <div class="mb-row" id="coderow"><label for="code">Código da sala</label><input id="code" maxlength="4" autocomplete="off" spellcheck="false" placeholder="K7QF"></div>
+        <div class="mb-btns"><button id="createbtn" class="ghost">Criar sala</button><button id="joinbtn" class="ghost">Entrar com código</button></div>
+      </div>
+      <p id="multimsg" role="status"></p>
+    </details>
+  </div>
+</main>
+
+<script src="js/util.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/radio.js"></script>
+<script src="js/gincana.js"></script>
+<script src="js/city.js"></script>
+<script src="js/render-city.js"></script>
+<script src="js/car.js"></script>
+<script src="js/facil.js"></script>
+<script src="js/vehicles.js"></script>
+<script src="js/traffic.js"></script>
+<script src="js/peds.js"></script>
+<script src="js/rides.js"></script>
+<script src="js/carcare.js"></script>
+<script src="js/light.js"></script>
+<script src="js/world.js"></script>
+<script src="js/semaforo.js"></script>
+<script src="js/delivery.js"></script>
+<script src="js/parcels.js"></script>
+<script src="js/passeador.js"></script>
+<script src="js/vlt.js"></script>
+<script src="js/taxi-aereo.js"></script>
+<script src="js/barcas.js"></script>
+<script src="js/onibus.js"></script>
+<script src="js/patrulha.js"></script>
+<script src="js/ambulancia.js"></script>
+<script src="js/envios.js"></script>
+<script src="js/escolar.js"></script>
+<script src="js/garagem.js"></script>
+<script src="js/autoescola.js"></script>
+<script src="js/police.js"></script>
+<script src="js/hud.js"></script>
+<script src="js/net.js"></script>
+<script src="js/multi.js"></script>
+<script src="js/rides-net.js"></script>
+<script src="js/pega.js"></script>
+<script src="js/input.js"></script>
+<script src="game.bundle.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

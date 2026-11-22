@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bandeira 3 · Ajuda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #0d0f14; --panel: #141821; --ink: #e9ecf1; --muted: #8a93a6; --accent: #39ff88; --gold: #ffd23f;
+    --warn: #ffb020; --bad: #ff4d4d; --surge: #ff8a1f; --aura: #c77dff; --border: #2d3446; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'VT323', ui-monospace, monospace; font-size: 21px; line-height: 1.3; }
+  a { color: var(--accent); }
+  header { padding: 28px 16px 18px; text-align: center; border-bottom: 2px solid #000; box-shadow: 0 2px 0 var(--border); }
+  h1 { font-family: 'Press Start 2P', monospace; font-size: clamp(22px, 5vw, 36px); color: var(--gold); text-shadow: 4px 4px 0 #000; margin: 0; }
+  header p { color: var(--muted); margin: 10px 0 0; }
+  .back { display: inline-block; margin-top: 14px; font-family: 'Press Start 2P', monospace; font-size: 11px; background: var(--accent); color: #000;
+    padding: 10px 14px; text-decoration: none; border: 2px solid #000; box-shadow: 0 0 0 2px #1b5e37; }
+  .wrap { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 28px; max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+  nav { position: sticky; top: 16px; align-self: start; background: var(--panel); border: 2px solid #000; box-shadow: 0 0 0 2px var(--border); padding: 10px 12px; }
+  nav b { font-family: 'Press Start 2P', monospace; font-size: 9px; color: var(--muted); display: block; margin-bottom: 6px; }
+  nav a { display: block; color: var(--ink); text-decoration: none; padding: 1px 0; }
+  nav a:hover { color: var(--accent); }
+  section { margin-bottom: 34px; scroll-margin-top: 16px; }
+  h2 { font-family: 'Press Start 2P', monospace; font-size: 14px; color: var(--gold); line-height: 1.5; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--border); }
+  h3 { font-family: 'Press Start 2P', monospace; font-size: 10px; color: var(--accent); margin: 18px 0 8px; }
+  p, ul { margin: 0 0 10px; }
+  ul { padding-left: 22px; }
+  li { margin-bottom: 3px; }
+  kbd { font-family: inherit; background: #000; border: 1px solid #444; padding: 0 5px; color: var(--gold); white-space: nowrap; }
+  .tbl { overflow-x: auto; margin: 6px 0 14px; }
+  table { border-collapse: collapse; width: 100%; font-size: 19px; }
+  th { text-align: left; font-weight: normal; color: var(--muted); font-size: 17px; padding: 3px 10px 3px 0; border-bottom: 1px solid var(--border); }
+  td { padding: 3px 10px 3px 0; border-bottom: 1px solid #1c2130; vertical-align: top; }
+  .money { color: var(--accent); white-space: nowrap; }
+  .neg { color: var(--bad); white-space: nowrap; }
+  .aura { color: var(--aura); }
+  .tip { background: var(--panel); border-left: 4px solid var(--accent); padding: 8px 12px; margin: 10px 0 14px; }
+  .tip.warn { border-color: var(--warn); }
+  .c-posto { color: #ff7b6e; } .c-ofi { color: #f1c40f; } .c-lava { color: #3fb6ff; } .c-surge { color: var(--surge); } .c-risk { color: #ff6b6b; }
+  @media (min-width: 761px) { nav { max-height: calc(100vh - 32px); overflow-y: auto; } }
+  @media (max-width: 760px) {
+    .wrap { grid-template-columns: minmax(0, 1fr); }
+    nav { position: static; }
+    nav .links { columns: 2; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>BANDEIRA 3</h1>
+  <p>Ajuda: todas as regras e possibilidades do jogo</p>
+  <a class="back" href="./">VOLTAR PARA O JOGO</a>
+</header>
+
+<div class="wrap">
+<nav>
+  <b>NESTA PÁGINA</b>
+  <div class="links">
+    <a href="#objetivo">Objetivo</a>
+    <a href="#controles">Controles</a>
+    <a href="#mapa">Mapa e trânsito</a>
+    <a href="#veiculos">Veículos</a>
+    <a href="#facil">Direção fácil</a>
+    <a href="#autoescola">Autoescola</a>
+    <a href="#entregas">Entregas de comida</a>
+    <a href="#escolar">Van escolar</a>
+    <a href="#farmacia">Farmácia de bike</a>
+    <a href="#vlt">VLT</a>
+    <a href="#aereo">Táxi aéreo</a>
+    <a href="#barcas">Barcas</a>
+    <a href="#onibus">Ônibus urbano</a>
+    <a href="#patrulha">Patrulha policial</a>
+    <a href="#ambulancia">Ambulância</a>
+    <a href="#envios">Rebu Envios</a>
+    <a href="#encomendas">Encomendas</a>
+    <a href="#passeador">Passeador de cachorros</a>
+    <a href="#gincana">Gincana da Rádio</a>
+    <a href="#corridas">Corridas</a>
+    <a href="#nota">Nota e gorjeta</a>
+    <a href="#dinamica">Tarifa dinâmica</a>
+    <a href="#carro">O carro</a>
+    <a href="#lugares">Posto, oficina, lava jato</a>
+    <a href="#casa">Casa e garagem</a>
+    <a href="#dinheiro">Fiado e guincho</a>
+    <a href="#noite">Dia e noite</a>
+    <a href="#radio">Rádio</a>
+    <a href="#aura">AURA</a>
+    <a href="#risco">Áreas de risco</a>
+    <a href="#bichos">Gatos e cachorros</a>
+    <a href="#colegios">Colégios</a>
+    <a href="#semaforos">Semáforos</a>
+    <a href="#policia">Polícia</a>
+    <a href="#multas">Multas e cobranças</a>
+    <a href="#multi">Multiplayer</a>
+    <a href="#pega">Pega</a>
+  </div>
+</nav>
+
+<main>
+<section id="objetivo">
+  <h2>OBJETIVO</h2>
+  <p>No solo, você escolhe entre 22 modalidades. Para ganhar dinheiro com corridas, aceite uma chamada no celular, busque o passageiro e leve-o até o destino. Você também pode trabalhar nas linhas de transporte, fazer entregas, passear com cachorros ou seguir as pistas da Gincana da Rádio.</p>
+  <p>No modo sozinho o progresso fica salvo no navegador. Na pausa das modalidades de rua, você pode consultar o total ganho e o contador do serviço atual. Para apagar o progresso do solo, escolha <b>Recomeçar do zero</b> e confirme no mesmo botão. No multiplayer, até 4 amigos disputam um turno e ganha quem tiver mais lucro.</p>
+</section>
+
+<section id="controles">
+  <h2>CONTROLES</h2>
+  <p>Na tela inicial, abra <b>Seu veículo → Trocar</b> para ver a lista. Clique no veículo ou use um dos atalhos abaixo e aperte <kbd>Enter</kbd> ou <kbd>Espaço</kbd> para começar.</p>
+  <div class="tbl"><table>
+    <tr><th>Atalhos no início</th><th>Modalidades, na mesma ordem</th></tr>
+    <tr><td>1 / 2 / 3 / 4</td><td>Rebu, 66, Táxi, Moto Rebu</td></tr>
+    <tr><td>5 / 6 / 7</td><td>euComida, 66Comida, Autoescola</td></tr>
+    <tr><td>8 / 9 / 0</td><td>Mercado Leve, Amazoom, Xopi</td></tr>
+    <tr><td>V / E / N / D</td><td>Van escolar, Carro elétrico, Rebu Envios, Farmácia de bike</td></tr>
+    <tr><td>A / P / O</td><td>Ambulância, Polícia, Ônibus urbano</td></tr>
+    <tr><td>T / B / H</td><td>VLT, Barcas, Táxi aéreo</td></tr>
+    <tr><td>C / G</td><td><a href="#passeador">Passeador de cachorros</a>, <a href="#gincana">Gincana da Rádio</a></td></tr>
+  </table></div>
+  <h3>Durante o jogo</h3>
+  <div class="tbl"><table>
+    <tr><th>Tecla</th><th>O que faz</th></tr>
+    <tr><td><kbd>W A S D</kbd> ou setas</td><td>dirigir ou caminhar no Passeador de cachorros</td></tr>
+    <tr><td><kbd>Espaço</kbd></td><td>freio de mão (derrapagem)</td></tr>
+    <tr><td><kbd>E</kbd></td><td>aceitar a corrida (no multiplayer: ir buscar a chamada destacada)</td></tr>
+    <tr><td><kbd>Q</kbd></td><td>recusar a corrida no solo, pedir uma dica na Gincana da Rádio ou destacar a próxima chamada no multiplayer</td></tr>
+    <tr><td><kbd>C</kbd></td><td>cancelar a corrida ou largar o passageiro</td></tr>
+    <tr><td><kbd>H</kbd></td><td>buzina (os pedestres saem da frente)</td></tr>
+    <tr><td><kbd>O</kbd> / <kbd>P</kbd> / <kbd>L</kbd></td><td>seta até a <span class="c-ofi">oficina</span>, o <span class="c-posto">posto</span> ou o <span class="c-lava">lava jato</span> mais perto (a mesma tecla cancela)</td></tr>
+    <tr><td><kbd>G</kbd> / <kbd>U</kbd></td><td>chamar guincho / descer para empurrar de graça no solo. Use as setas ou WASD e aperte U para voltar ao volante.</td></tr>
+    <tr><td><kbd>B</kbd> / <kbd>T</kbd></td><td>no solo, traçar rota para casa / montar o estepe com o veículo parado</td></tr>
+    <tr><td><kbd>J</kbd></td><td>no solo, escolher outra modalidade com o veículo estacionado</td></tr>
+    <tr><td><kbd>R</kbd></td><td>avança para a próxima estação do <a href="#radio">rádio do carro</a> (no fim do turno da sala, abre o ranking)</td></tr>
+    <tr><td><kbd>V</kbd></td><td>nas rotas de encomendas, iniciar a volta ao galpão com a carga restante</td></tr>
+    <tr><td><kbd>K</kbd> / <kbd>Z</kbd></td><td>na viatura, alternar a sirene e o giroflex / iniciar uma ronda</td></tr>
+    <tr><td><kbd>I</kbd></td><td>na barca, escolher a volta à ilha antes do embarque</td></tr>
+    <tr><td><kbd>X</kbd></td><td>pega (multiplayer): chamar, entrar ou desistir</td></tr>
+    <tr><td><kbd>F</kbd></td><td>liga e desliga a <a href="#facil">direção fácil</a> (também na tela inicial e na pausa)</td></tr>
+    <tr><td><kbd>M</kbd></td><td>liga e desliga o som</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>pausa</td></tr>
+    <tr><td><kbd>1</kbd>–<kbd>9</kbd>, <kbd>0</kbd></td><td>na tela inicial: escolher o veículo; nos menus: escolher a opção</td></tr>
+    <tr><td><kbd>Enter</kbd></td><td>na tela inicial: começar; no multiplayer: o dono começa o turno ou pede revanche</td></tr>
+  </table></div>
+</section>
+
+<section id="mapa">
+  <h2>MAPA E TRÂNSITO</h2>
+  <p>No minimapa, o quadrado branco é você. O pontinho verde junto dele mostra para onde o veículo está virado. O alvo do serviço pisca em verde na busca e em amarelo na entrega. Ao traçar uma rota para casa, posto, oficina ou lava jato, procure a moldura branca piscando no local escolhido.</p>
+  <p>O trânsito circula pela direita. Nas ruas de mão única, as duas faixas seguem no mesmo sentido. As avenidas têm duas faixas para cada sentido. Se bloquear a rua, os carros formam fila e podem buzinar.</p>
+</section>
+
+<section id="veiculos">
+  <h2>VEÍCULOS</h2>
+  <p>Ao continuar o solo, vale a escolha feita na tela inicial. Se deixou um passeio ou um resgate em andamento, selecione o Passeador ou a Ambulância para retomá-lo. Durante o jogo, conclua ou cancele o serviço atual, pare e abra <b>Trocar modalidade</b> no celular (<kbd>J</kbd>).</p>
+  <p>A Van escolar leva a turma, a van da Amazoom carrega encomendas, o carro Rebu busca passageiros e a moto do euComida leva refeições. Cada veículo guarda seu combustível, a lataria e o estepe até você voltar a usá-lo.</p>
+  <h3 id="escolar">VAN ESCOLAR</h3>
+  <p>Escolha <b>V · Van escolar</b> e aceite o contrato com <kbd>E</kbd> em até 18 segundos. Cada contrato reúne até três alunos e lista seus nomes e o valor por trecho de cada família. Pare perto de cada casa e espere a criança caminhar até a van. No portão da escola, aguarde a turma desembarcar para receber a ida. Durante os 90 segundos de aula você pode fazer outro trabalho. Na saída, volte à modalidade escolar, espere o último aluno embarcar e leve cada criança de volta à sua casa. Cada família paga a volta no desembarque.</p>
+  <div class="tbl"><table>
+    <tr><th>Veículo</th><th>Tarifa</th><th>Chamadas</th><th>Combustível</th><th>Detalhes</th></tr>
+    <tr><td>Rebu</td><td>normal</td><td>normal</td><td>normal</td><td>equilibrado</td></tr>
+    <tr><td>66</td><td>−10%</td><td>bem mais frequentes</td><td>gasta 20% menos</td><td>acelera um pouco menos</td></tr>
+    <tr><td>Táxi</td><td>+15%, e <b>bandeira 2</b> (+30%) das 20:00 às 06:00</td><td>menos frequentes</td><td>gasta 10% mais</td><td>um pouco mais lento, aguenta mais batida</td></tr>
+    <tr><td>Moto Rebu</td><td>−40%</td><td>bem mais frequentes</td><td>gasta 30% menos; o tanque cheio custa 35% do de um carro</td><td>ágil e menor, derrapa mais; não leva executivo; batida dói 70% mais e o tombo derruba o piloto; passageiro não suja a moto</td></tr>
+    <tr><td>euComida</td><td>taxa de entrega (veja abaixo)</td><td>chove pedido</td><td>igual à Moto Rebu</td><td>moto de entregador: em vez de passageiros, leva <b>comida</b>. Só no modo sozinho (numa sala você vai de Moto Rebu)</td></tr>
+    <tr><td>66Comida</td><td>taxa de entrega −15%</td><td>chove pedido (ainda mais que no euComida)</td><td><b>não gasta</b>: no lugar do tanque, a barra de <b>FÔLEGO</b></td><td>bike de entregador: mesmos restaurantes e pedidos do euComida, mas só pedidos perto, nada de pedido de festa e 40% mais tempo para entregar. Lenta (anda a uns 2/3 da moto), ágil nas curvas; o tombo derruba o ciclista. Pedalar gasta fôlego, parado ou na banguela ele volta; com a perna bamba a bike perde força. No posto, o café enche o fôlego. Não pega radiador, bateria nem gasolina batizada. Só no modo sozinho (numa sala você vai de Moto Rebu)</td></tr>
+    <tr><td>Mercado Leve e Amazoom</td><td>por pacote</td><td>até 12 paradas</td><td>consumo 20% maior que o Rebu</td><td>vans de <a href="#encomendas">encomendas</a> no solo</td></tr>
+    <tr><td>Xopi</td><td>por pacote</td><td>até 5 paradas</td><td>igual à Moto Rebu</td><td>moto com baú para rotas curtas no solo</td></tr>
+    <tr><td>Autoescola</td><td>—</td><td>—</td><td>não gasta</td><td>carro da escola para <a href="#autoescola">aprender a dirigir</a>. Só no modo sozinho (numa sala você vai de Rebu)</td></tr>
+  </table></div>
+</section>
+
+<section id="facil">
+  <h2>DIREÇÃO FÁCIL</h2>
+  <p>Para quem está aprendendo. Liga e desliga com <kbd>F</kbd>, no botão da tela inicial ou na pausa. Quando está ligada, aparece <b>FÁCIL</b> no painel.</p>
+  <ul>
+    <li>O carro anda no máximo uns 75 km/h, acelera mais suave e quase não derrapa (nem com o freio de mão).</li>
+    <li>Soltou a seta do teclado, o volante se endireita sozinho na direção da rua.</li>
+    <li>Raspou no muro? O carro desliza junto da parede em vez de quicar.</li>
+    <li>Freio automático: o carro segura sozinho antes de pedestres, crianças, gatos, cachorros e carros na frente.</li>
+    <li>Só no modo sozinho: as batidas estragam metade, o carro não quebra sozinho e gasta menos gasolina.</li>
+  </ul>
+  <p>No multiplayer a direção fácil também funciona, mas só deixa o carro mais lento e mais seguro (o dinheiro da sala não muda).</p>
+</section>
+
+<section id="autoescola">
+  <h2>AUTOESCOLA</h2>
+  <p>Escolha <b>7 · Autoescola</b> na tela inicial. O carro é da escola: não gasta gasolina, não estraga, não paga multa e não mexe no seu dinheiro nem no save do modo sozinho.</p>
+  <ul>
+    <li>O instrutor liga no celular: siga a <b style="color:var(--accent)">seta verde</b> e pare do lado dele.</li>
+    <li>Na aula, o celular mostra a próxima ordem bem grande (← vire à esquerda, ↑ siga reto, → vire à direita) e o instrutor fala em voz alta (a voz desliga junto com o som, no <kbd>M</kbd>).</li>
+    <li>Placa de <b class="neg">PARE</b>: pare o carro de vez antes da faixa branca, depois siga.</li>
+    <li>No fim, pare dentro do quadrado branco com o <b style="color:var(--gold)">P</b>.</li>
+    <li>Errou o caminho? Tudo bem: o instrutor monta outro caminho a partir de onde você está (perde 5 pontos).</li>
+  </ul>
+  <h3>PONTOS</h3>
+  <p>Toda aula começa com 100 pontos. 90 ou mais = ★★★, 75 = ★★, 50 = ★. A próxima aula abre com pelo menos uma estrela.</p>
+  <div class="tbl"><table>
+    <tr><th>Falta</th><th>Pontos</th></tr>
+    <tr><td>Bater (muro, carro)</td><td>−10</td></tr>
+    <tr><td>Passar do limite de velocidade (a placa redonda no celular pisca)</td><td>−5</td></tr>
+    <tr><td>Andar na calçada ou na grama</td><td>−5</td></tr>
+    <tr><td>Contramão (a partir da aula 4)</td><td>−5</td></tr>
+    <tr><td>Caminho errado</td><td>−5</td></tr>
+    <tr><td>Passar direto no PARE</td><td>−15</td></tr>
+    <tr><td>Avançar o sinal vermelho</td><td>−15</td></tr>
+    <tr><td>Atropelar alguém</td><td>−25</td></tr>
+  </table></div>
+  <h3>AULAS</h3>
+  <div class="tbl"><table>
+    <tr><th>Aula</th><th>O que treina</th></tr>
+    <tr><td>1. Primeira aula</td><td>3 cruzamentos, quase tudo reto, limite 40 km/h</td></tr>
+    <tr><td>2. Virando a esquina</td><td>5 cruzamentos com várias curvas</td></tr>
+    <tr><td>3. Placa de PARE</td><td>duas placas de PARE</td></tr>
+    <tr><td>4. Mão direita</td><td>contramão passa a contar; limite 50 km/h</td></tr>
+    <tr><td>5. Aula à noite</td><td>a aula acontece às 21:00, limite 40 km/h</td></tr>
+    <tr><td>6. Prova do DETRAN</td><td>8 cruzamentos, três PARE; precisa de 70 pontos. Quem passa ganha a <b>carteira de motorista</b> e libera o treino livre</td></tr>
+  </table></div>
+  <p>Na pausa, <b>Escolher a aula</b> repete qualquer aula já liberada (ou apaga o progresso da autoescola). Durante a aula, <kbd>C</kbd> encerra o percurso. Depois de tirar a carteira, o treino livre sorteia um trajeto de sete cruzamentos, com duas placas de PARE e limite de 50 km/h.</p>
+</section>
+
+<section id="entregas">
+  <h2>ENTREGADOR DO EUCOMIDA</h2>
+  <p>Vale também para a bike do <b>66Comida</b> (celular amarelo), com pedidos mais perto, sem pedido de festa e prazo 40% maior.</p>
+  <ul>
+    <li>Os pedidos chegam no celular (vermelho) e expiram em 12 s. <kbd>E</kbd> aceita, <kbd>Q</kbd> recusa.</li>
+    <li>São 8 restaurantes na cidade, com <b>toldo listrado</b> na fachada e quadradinho rosa no minimapa. Siga a <b style="color:var(--accent)">seta verde</b> e pare na porta.</li>
+    <li>Às vezes a cozinha ainda está preparando: o celular mostra quanto falta. Espere parado; o atendente traz a bag quando ficar pronto.</li>
+    <li>Siga a <b style="color:var(--gold)">seta amarela</b> até o cliente, que espera acenando na calçada. O prazo começa a contar quando você retira o pedido.</li>
+    <li>A comida esfria: <b>quentinha</b> no prazo, <b>morna</b> depois dele e <b>fria</b> com metade do prazo de atraso (o açaí derrete).</li>
+    <li>A taxa de entrega é menor que uma corrida (R$ 4,00 mais a distância, com a ida até o restaurante contando um pouco), mas os pedidos vêm em sequência. A dinâmica vale pelo restaurante.</li>
+    <li>Demorou demais para retirar, o restaurante passa o pedido para outro entregador. Cancelar antes de retirar custa <span class="neg">R$ 5,00</span>; sumir com o pedido custa <span class="neg">R$ 15,00</span> e nota 1.</li>
+  </ul>
+  <h3>TIPOS DE PEDIDO</h3>
+  <div class="tbl"><table>
+    <tr><th>Tipo</th><th>Paga</th><th>Cuidado com</th></tr>
+    <tr><td>Lanche</td><td>normal</td><td>nada de especial</td></tr>
+    <tr><td>Pizza</td><td>+20%</td><td>cada batida tira o dobro de nota</td></tr>
+    <tr><td>Açaí</td><td>+30%</td><td>prazo 30% menor; atrasar tira 2 estrelas</td></tr>
+    <tr><td>Com refri</td><td>+10%</td><td>derrapagem, freada forte e batida sacodem o copo: se a barra do refri zerar, ele vaza (−2)</td></tr>
+    <tr><td>Pedido de festa</td><td>+80%</td><td>pedidão caro; cada batida tira o dobro de nota</td></tr>
+  </table></div>
+  <p>Nota da entrega: começa em 5; cada batida com a comida na bag tira 0,6 (pizza e festa: 1,2), atraso tira 1 (açaí: 2), comida fria tira mais 1 e refri vazado tira 2. Gorjeta igual à das corridas: só com 5 estrelas.</p>
+</section>
+
+<section id="farmacia">
+  <h2>Entregas de farmácia com bicicleta</h2>
+  <p>Escolha <b>D · Farmácia de bike</b> no início do solo ou estacione e use <kbd>J</kbd>. Aceite um pedido com <kbd>E</kbd>. Siga a seta verde até a farmácia, identificada por uma cruz verde, e pare para retirar o pacote. Depois siga a seta amarela e pare perto do cliente para receber a taxa de entrega.</p>
+  <p>O celular mostra o item, o prazo e o valor. O frasco de xampu em vidro rende 20% a mais que um pacote lacrado na mesma rota, mas cada batida tira o dobro de pontos da avaliação. Pedalar consome fôlego, que se recupera ao descansar.</p>
+</section>
+
+<section id="aereo">
+  <h2>Táxi aéreo</h2>
+  <p>Escolha <b>H · Táxi aéreo</b> na tela inicial do solo ou troque de modalidade com <kbd>J</kbd>. Aceite o voo com <kbd>E</kbd> e aguarde dois segundos para o embarque.</p>
+  <p>Há três helipontos, Noroeste, Leste e Sul. O destino é sorteado a cada voo e a tarifa aumenta com a distância entre os telhados. Acelere com <kbd>W</kbd> ou ↑ e gire com <kbd>A</kbd>/<kbd>D</kbd> ou ←/→. Siga a seta até o H no telhado de destino. Use <kbd>Espaço</kbd> para frear ou <kbd>S</kbd> para recuar. Fique parado sobre o H por dois segundos para desembarcar, receber a tarifa indicada e liberar o próximo voo. <kbd>C</kbd> cancela o voo e retorna à origem.</p>
+</section>
+<section id="barcas">
+  <h2>Barcas da Orla</h2>
+  <p>Escolha <b>B · Barcas</b> no início do solo ou estacione e aperte <kbd>J</kbd>. Use <kbd>E</kbd> para abrir o embarque. Fique parado por dois segundos junto ao cais até a turma subir.</p>
+  <p>A barca segue o canal da orla. Acelere com <kbd>W</kbd> ou ↑, freie com <kbd>Espaço</kbd> e use <kbd>S</kbd> ou ↓ para recuar. No cais indicado, pare por dois segundos para desembarcar e receber R$ 4 por passageiro. A próxima travessia parte desse cais no sentido contrário. Para dar a volta completa no mapa, escolha <b>Volta à ilha</b> no celular ou aperte <kbd>I</kbd> antes do embarque. Siga as setas pelos quatro lados e desembarque no cais de partida. Use <kbd>C</kbd> para cancelar e retornar ao cais de origem.</p>
+</section>
+
+<section id="vlt">
+  <h2>VLT · Linha Circular</h2>
+  <p>Escolha <b>T · VLT</b> no início do solo ou estacione e use <kbd>J</kbd>. Na cabine, aperte <kbd>E</kbd> para iniciar a viagem. O trem segue os trilhos automaticamente na direção da linha. Acelere com <kbd>W</kbd> ou ↑ e freie com <kbd>Espaço</kbd>. Se passar da plataforma, use <kbd>S</kbd> ou ↓ para frear e recuar.</p>
+  <p>Pare na marca de cada uma das cinco estações por dois segundos para o embarque e desembarque. Ao retornar ao Terminal Poente e concluir o desembarque, você recebe R$ 40 pela viagem e pode iniciar outra volta. Para recolher o VLT ao terminal antes de completar o circuito, aperte <kbd>C</kbd>.</p>
+</section>
+
+<section id="onibus">
+  <h2>Ônibus urbano · Linha 01</h2>
+  <p>Escolha <b>O · Ônibus urbano</b> na tela inicial do solo ou estacione e aperte <kbd>J</kbd> para trocar de modalidade. Aceite a viagem com <kbd>E</kbd> e siga a seta até o terminal de partida. A oferta fica no celular por 20 segundos. A linha tem quatro pontos. Em cada um, mantenha o ônibus parado por dois segundos para quem precisa descer ou subir.</p>
+  <p>O celular mostra o próximo ponto e a lotação. Cada passageiro que chega ao seu destino rende R$ 5,00. No terminal final, todos descem e a próxima oferta permite fazer a volta.</p>
+</section>
+
+<section id="patrulha">
+  <h2>Patrulha policial</h2>
+  <p>No solo, escolha <b>P · Polícia</b> na tela inicial ou estacione e use <kbd>J</kbd> para pegar a viatura. A central chama para colisões sem feridos, pessoas perdidas e veículos em pane. Você tem 18 segundos para responder. Quando a central chamar, aceite com <kbd>E</kbd> ou recuse com <kbd>Q</kbd>. Siga a seta até a ocorrência e fique parado no marcador por três segundos para concluir o atendimento e receber o valor anunciado. Use <kbd>C</kbd> para devolver o chamado à central.</p>
+  <p>Use <kbd>K</kbd> para ligar ou desligar a sirene e o giroflex. Para iniciar uma ronda, pressione <kbd>Z</kbd> quando estiver livre. Siga a seta verde até a área de risco e pare perto de um bandido para embarcá-lo. A seta muda para amarelo e indica a prisão. Pare na entrada por três segundos para entregar o detido e receber. Os dois comandos também estão no celular da viatura.</p>
+</section>
+
+<section id="ambulancia">
+  <h2>Plantão de ambulância</h2>
+  <p>No solo, escolha <b>A · Ambulância</b> na tela inicial ou estacione e use <kbd>J</kbd> para trocar de modalidade. Aceite o chamado com <kbd>E</kbd> e siga a seta verde até o paciente. A oferta fica disponível por 18 segundos. Use <kbd>Q</kbd> para recusar ou <kbd>C</kbd> para devolver à central um resgate já aceito. Pare por dois segundos para embarcar a pessoa. Depois siga a seta amarela até o hospital e pare na entrada por dois segundos. A central paga o atendimento quando o hospital recebe o paciente.</p>
+</section>
+
+<section id="envios">
+  <h2>REBU ENVIOS</h2>
+  <p>Para transportar um pacote de pessoa para pessoa no solo, escolha <b>N · Rebu Envios</b> no início ou estacione e aperte <kbd>J</kbd> para pegar o carro do Rebu Envios. A oferta mostra o que vai ser enviado, quem entrega, quem recebe, a distância e o valor.</p>
+  <p>Aceite com <kbd>E</kbd> e pare na seta verde para retirar o pacote. Depois, pare na seta amarela junto ao destinatário. Espere a caixa mudar de mãos antes de arrancar. Se o envio pedir PIN, aperte <kbd>E</kbd> e selecione o código que a pessoa disser. Você recebe o frete na entrega. Batidas com o pacote a bordo afetam a avaliação.</p>
+  <p>A oferta dura 15 segundos. Você pode recusá-la com <kbd>Q</kbd>. Após aceitar, cancelar com <kbd>C</kbd> custa R$ 5 antes da coleta ou R$ 15 e uma estrela depois dela. Se fechar o jogo, o envio aceito será retomado ao continuar no solo.</p>
+</section>
+
+<section id="encomendas">
+  <h2>ROTAS DE ENCOMENDAS</h2>
+  <p>No modo solo, escolha a van do <b>Mercado Leve</b> ou da <b>Amazoom</b> para levar até 12 pacotes. A moto da <b>Xopi</b> tem baú para 5 e atende endereços mais próximos.</p>
+  <ol>
+    <li>Confira o valor e o prazo no celular. Aceite com <kbd>E</kbd> ou recuse com <kbd>Q</kbd>. Siga a seta verde e estacione na doca até terminar o carregamento.</li>
+    <li>Escolha qualquer parada numerada do minimapa. A seta amarela indica a mais próxima. Quanto mais perto da porta você estacionar, mais rápida será a entrega.</li>
+    <li>Pacotes frágeis podem quebrar em batidas fortes. Os pesados levam mais tempo e só cabem nas vans. Os marcados “Chega hoje” têm um relógio próprio. Se uma assinatura ficar pendente por ausência do cliente, traga o pacote de volta.</li>
+    <li>Volte à doca para receber pelas coletas. Para encerrar antes de visitar todos os endereços, aperte <kbd>V</kbd> e leve a carga restante ao galpão. Só os serviços concluídos são pagos.</li>
+    <li>Conclua todas as entregas e coletas dentro dos prazos, com os pacotes intactos, para ganhar 25% de bônus. Cancelar com <kbd>C</kbd> custa R$ 5 antes de sair do galpão ou R$ 20 depois do carregamento.</li>
+  </ol>
+</section>
+
+<section id="corridas">
+  <h2>CORRIDAS</h2>
+  <ul>
+    <li>As ofertas chegam no celular e expiram em 12 s. <kbd>E</kbd> aceita, <kbd>Q</kbd> recusa.</li>
+    <li>Siga a <b style="color:var(--accent)">seta verde</b> e pare ao lado do passageiro (devagar). Ele leva um instante para entrar: segure o carro.</li>
+    <li>Siga a <b style="color:var(--gold)">seta amarela</b> até o destino e pare lá. O celular mostra o tempo que falta.</li>
+    <li>O passageiro espera um tempo limitado (cerca de 75 s mais um pouco pela distância). Demorou demais, ele cancela.</li>
+    <li>Cancelar antes do passageiro entrar custa <span class="neg">R$ 5,00</span>. Largar o passageiro no meio da viagem custa <span class="neg">R$ 15,00</span> e nota 1.</li>
+    <li>Quanto melhor a sua nota, mais rápido chegam as ofertas (nota abaixo de 4 deixa tudo mais lento).</li>
+  </ul>
+  <h3>TIPOS DE PASSAGEIRO</h3>
+  <div class="tbl"><table>
+    <tr><th>Tipo</th><th>Paga</th><th>Cuidado com</th></tr>
+    <tr><td>Passageiro</td><td>normal</td><td>nada de especial</td></tr>
+    <tr><td>Com pressa</td><td>+40%</td><td>prazo 25% menor; atrasar tira 2 estrelas</td></tr>
+    <tr><td>Enjoa fácil</td><td>+20%</td><td>derrapagem e velocidade alta enjoam; se o estômago zerar, ele vomita e o carro fica sujo</td></tr>
+    <tr><td>Executivo</td><td>+70%</td><td>cada batida tira mais nota; carro com defeito tira 1 estrela; não anda de moto</td></tr>
+    <tr><td>Voltando da praia</td><td>+10%</td><td>sempre deixa areia: o carro fica sujo no fim da viagem</td></tr>
+  </table></div>
+</section>
+
+<section id="nota">
+  <h2>NOTA E GORJETA</h2>
+  <p>Toda corrida começa valendo 5 estrelas e perde nota assim (o resultado fica entre 1 e 5):</p>
+  <ul>
+    <li>cada batida forte com o passageiro a bordo: −0,6 (executivo: −1,2)</li>
+    <li>chegar atrasado: −1 (com pressa: −2), e o pagamento cai 15%</li>
+    <li>lataria abaixo de 35%: −0,8</li>
+    <li>carro sujo: −1,2</li>
+    <li>enjoa fácil: perde nota conforme o estômago</li>
+    <li>executivo com qualquer defeito no carro: −1</li>
+  </ul>
+  <p>A média do solo considera até 30 avaliações. Quando entra uma nova com o histórico cheio, sai a mais antiga. Só corrida de 5 estrelas tem chance de gorjeta (65%), de 10% a 35% do valor.</p>
+</section>
+
+<section id="dinamica">
+  <h2>TARIFA DINÂMICA</h2>
+  <p>Áreas <span class="c-surge">laranjas</span> aparecem e somem pela cidade com multiplicador de x1,3 a x2,6. Corridas que começam lá dentro pagam mais, e muitas chamadas nascem nessas áreas. O celular mostra a dinâmica mais perto quando você está livre.</p>
+</section>
+
+<section id="carro">
+  <h2>O CARRO</h2>
+  <ul>
+    <li><b>Combustível:</b> acelerar gasta. Na reserva (15%) aparece um aviso. Zerou, o carro para.</li>
+    <li><b>Lataria:</b> cai a cada batida. Abaixo de 25% o carro fica mais fraco. Zerou, o carro não anda.</li>
+    <li><b>Desgaste:</b> sobe com os quilômetros e aumenta a chance de defeitos.</li>
+    <li><b>Defeitos aleatórios:</b> pneu furado (carro puxa para o lado e fica lento), radiador (a temperatura sobe e o motor perde força ao superaquecer), freio gasto (freia bem menos) e bateria (o motor morre do nada). Batida muito forte também pode furar o pneu.</li>
+    <li><b>Carro sujo:</b> vômito ou areia. Derruba a nota de todo passageiro até lavar o carro em casa ou no lava jato.</li>
+    <li><b>Gasolina batizada:</b> veja o Posto Preço Baixo abaixo.</li>
+  </ul>
+</section>
+
+<section id="lugares">
+  <h2>POSTO, OFICINA E LAVA JATO</h2>
+  <p>Entre devagar no pátio para abrir o menu. <kbd>O</kbd>, <kbd>P</kbd> e <kbd>L</kbd> mostram a seta até o mais perto de cada tipo.</p>
+  <div class="tbl"><table>
+    <tr><th>Lugar</th><th>Serviço</th><th>Preço</th></tr>
+    <tr><td class="c-posto">Posto</td><td>gasolina</td><td class="money">R$ 0,65 por % do tanque (moto: 35% disso)</td></tr>
+    <tr><td class="c-posto">Posto</td><td>café + pão de queijo</td><td class="money">R$ 8,00</td></tr>
+    <tr><td class="c-ofi">Oficina</td><td>funilaria</td><td class="money">R$ 2,20 por % de lataria</td></tr>
+    <tr><td class="c-ofi">Oficina</td><td>trocar o pneu / freio / bateria / radiador</td><td class="money">R$ 70 / 110 / 150 / 180</td></tr>
+    <tr><td class="c-ofi">Oficina</td><td>revisão (zera o desgaste)</td><td class="money">R$ 30 + R$ 1,50 por % de desgaste</td></tr>
+    <tr><td class="c-lava">Lava jato</td><td>lavagem completa com aspiração</td><td class="money">R$ 35,00</td></tr>
+  </table></div>
+  <h3 id="casa">CASA, ESTEPE E ENERGIA NO SOLO</h3>
+  <p>A casa tem jardim e uma vaga junto à rua. Aperte <kbd>B</kbd> para traçar a rota até o ponto lilás no minimapa. Entre na vaga e pare para lavar à mão, trocar de veículo ou instalar um kit GNV grátis no carro ou na van. O cilindro começa vazio. Abasteça em qualquer posto por R$ 0,32 por ponto percentual no carro e um pouco mais na van. O motor usa o gás primeiro e volta à gasolina quando ele acaba.</p>
+  <p>O carro elétrico faz corridas do Rebu. Pegue-o na garagem ou aperte <kbd>E</kbd> na tela inicial. Um dos três postos tem carregador público gratuito, marcado em verde-água. No elétrico, <kbd>P</kbd> indica esse posto. Com a bateria vazia, você pode empurrar até lá ou pagar o guincho.</p>
+  <p>Carros e vans saem com um estepe. Se furar um pneu, pare e aperte <kbd>T</kbd> ou escolha <b>Trocar pneu com o estepe</b> no menu da sua casa. A troca é gratuita e consome o estepe. A oficina vende outro por R$ 70.</p>
+  <p>Se o custo de completar o tanque passar de R$ 20, o posto também oferece essa quantia em gasolina. No elétrico, um posto sem carregador oferece a opção de traçar a rota para recarga.</p>
+  <h3>POSTO PREÇO BAIXO</h3>
+  <p>O Posto Preço Baixo vende gasolina 40% mais barata e batizada. Com ela no tanque, o carro gasta mais, perde força, engasga de vez em quando e se desgasta mais rápido. Para diluir a mistura, rode até baixar o nível e complete o tanque em outro posto. O aviso some quando a proporção de gasolina batizada cai para 25% ou menos. Continue abastecendo em postos normais para diluir o restante.</p>
+</section>
+
+<section id="dinheiro">
+  <h2>FIADO, GUINCHO E SOCORRO</h2>
+  <ul>
+    <li>Dá para pagar no fiado até o saldo chegar a <span class="neg">−R$ 200,00</span>. Abaixo disso, o posto, a oficina e o lava jato não vendem.</li>
+    <li><kbd>G</kbd> chama o guincho quando o carro quebrou (vai para a oficina mais perto) ou ficou sem gasolina (vai para o posto mais perto). Custa <span class="neg">R$ 120,00</span>, mesmo sem dinheiro. Se você tiver passageiro, ele desce e a corrida conta nota 1.</li>
+    <li>Se você já está na oficina (ou no posto), o guincho não vem e não cobra: só abre o menu.</li>
+    <li>Quebrou e não tem dinheiro nem no fiado? A oficina oferece um <b>remendo de emergência grátis</b> (lataria em 15%, um pouco de desgaste). Sem gasolina e sem dinheiro? O frentista empresta <b>8% de gasolina</b> de graça. Assim ninguém fica preso.</li>
+  </ul>
+</section>
+
+<section id="noite">
+  <h2>DIA E NOITE</h2>
+  <p>No modo sozinho o relógio anda 1 minuto por segundo e o dia começa às 07:00. Escurece das 17:00 às 19:30 e clareia das 05:00 às 07:00. À noite os faróis, os postes e o giroflex iluminam a rua, os bandidos ficam mais numerosos e rápidos, e o táxi cobra bandeira 2.</p>
+  <p>No multiplayer o turno vai das 07:00 às 19:00, então lá só chega a escurecer no fim da tarde.</p>
+</section>
+
+<section id="gincana">
+  <h2>Gincana da Rádio</h2>
+  <p>Escolha <b>G · Gincana da Rádio</b> na tela inicial ou use <kbd>J</kbd> ao estacionar. Escolha uma missão no celular ou aperte <kbd>E</kbd> para começar <b>Ouvinte premiado</b>. Leia ou ouça a primeira pista e estacione no local descrito. A próxima parada só aparece quando você acerta a atual.</p>
+  <p>Se precisar de ajuda, <kbd>Q</kbd> revela o nome do local da pista atual e liga a seta até ele. Depois da segunda pista, a seta indica o destino do desafio final. Concluir a missão rende <span class="money">R$ 80</span>, ou <span class="money">R$ 120</span> se você resolver as duas pistas sem pedir dica. Para cancelar, aperte <kbd>C</kbd>.</p>
+  <ul>
+    <li><b>Ouvinte premiado.</b> Depois do embarque, você tem 90 segundos para levar o ouvinte até a barca.</li>
+    <li><b>Disco de ouro.</b> Entregue o disco na estação Mercado. Uma batida forte com o disco a bordo encerra a missão.</li>
+    <li><b>Ao vivo na orla.</b> Estacione no Cais Nascente e fique parado por cinco segundos seguidos para completar a transmissão.</li>
+  </ul>
+</section>
+
+<section id="radio">
+  <h2>RÁDIO</h2>
+  <p>O rádio começa desligado. Cada toque em <kbd>R</kbd> avança uma estação. O painel do carro mostra qual você sintonizou.</p>
+  <p>As primeiras quatro estações fazem parte do jogo. O navegador toca funk na <b>150 BPM FM</b>, modão na <b>Sertaneja 98</b> e samba na <b>Pagodão FM</b>. Na <b>Rádio Trânsito</b>, a voz do navegador lê boletins sobre a cidade do jogo.</p>
+  <p>Em seguida vêm as emissoras ao vivo pela internet, na ordem em que aparecem no painel.</p>
+  <ol>
+    <li>FM O Dia</li>
+    <li>Super Rádio Tupi</li>
+    <li>Rádio Cidade</li>
+    <li>JB FM</li>
+    <li>Antena 1</li>
+    <li>Rádio Globo do Rio</li>
+    <li>BandNews FM Rio</li>
+    <li>CBN Rio</li>
+  </ol>
+  <p>Se aparecer o aviso <b>sem sinal</b>, aperte <kbd>R</kbd> para seguir para a próxima estação. Depois da CBN Rio, um toque em <kbd>R</kbd> desliga o rádio e mantém os sons da rua. Para silenciar todo o jogo e manter a estação selecionada, use <kbd>M</kbd>. Aperte <kbd>M</kbd> de novo para voltar a ouvir.</p>
+</section>
+
+<section id="aura">
+  <h2>AURA</h2>
+  <p>A <span class="aura">AURA</span> aparece embaixo da nota, no canto da tela. Ela pode ficar negativa.</p>
+  <div class="tbl"><table>
+    <tr><th>O que aconteceu</th><th>AURA</th></tr>
+    <tr><td>atropelar um bandido</td><td class="aura">+10</td></tr>
+    <tr><td>despistar a polícia</td><td class="aura">+15</td></tr>
+    <tr><td>vencer um pega</td><td class="aura">+5</td></tr>
+    <tr><td>atropelar um gato ou um cachorro</td><td class="neg">−15</td></tr>
+  </table></div>
+  <p>Aura alta assusta os bandidos: a chance de o bandido desistir e fugir é a sua aura dividida por 120 (até 85%).</p>
+</section>
+
+<section id="risco">
+  <h2>ÁREAS DE RISCO E BANDIDOS</h2>
+  <ul>
+    <li>As áreas de risco são os círculos <span class="c-risk">vermelhos</span> no mapa e no minimapa.</li>
+    <li>Os bandidos andam a pé por lá: 2 por área de dia, 4 à noite.</li>
+    <li>Se você passar devagar (abaixo de uns 38 km/h) perto de um, ele vem na direção do carro. Acelere (acima de uns 60 km/h) para ele desistir.</li>
+    <li>Se ele encostar com o carro quase parado, é <b>assalto</b>: leva de 30% a 60% do seu dinheiro (até <span class="neg">R$ 200,00</span>), o carro, ou os dois. Sem dinheiro, ele leva o carro.</li>
+    <li>Carro roubado: o seguro acha o carro na oficina mais perto, mas cobra <span class="neg">R$ 100,00</span> de franquia. Ele volta amassado e com metade da gasolina, e o passageiro foge.</li>
+    <li>Depois de um assalto você tem 25 s de sossego.</li>
+    <li>Atropelar bandido não dá multa nem polícia: dá <span class="aura">+10 de AURA</span>.</li>
+  </ul>
+</section>
+
+<section id="bichos">
+  <h2>GATOS E CACHORROS</h2>
+  <p>Gatos e cachorros andam pelas calçadas, param para cheirar o poste ou tomar sol e pulam para o lado quando um carro vem rápido (gato escapa quase sempre, cachorro só às vezes). Atropelar um tira <span class="neg">15 de AURA</span>.</p>
+</section>
+
+<section id="colegios">
+  <h2>COLÉGIOS</h2>
+  <ul>
+    <li>Três prédios são colégios, com telhado de tijolinho, quadra no topo, nome em amarelo e faixa amarela no asfalto.</li>
+    <li>Na entrada e na saída das aulas (06:45–07:30, 11:45–12:30 e 17:15–18:00) a rua da frente engarrafa: aparecem carros extras andando a passo de tartaruga, e crianças atravessam.</li>
+    <li>Nesses horários tem <b>radar de 40 km/h</b> na zona escolar: <span class="neg">R$ 60,00</span> de multa e a polícia vem atrás.</li>
+    <li>Atropelar uma criança conta como atropelar um pedestre.</li>
+  </ul>
+</section>
+
+<section id="semaforos">
+  <h2>SEMÁFOROS</h2>
+  <ul>
+    <li>Cerca de metade dos cruzamentos de três ou quatro saídas tem semáforo. Observe o sinal sobre as faixas por onde você chega, inclusive quando for virar. No vermelho, pare antes da linha branca que antecede a faixa de pedestres.</li>
+    <li>O ciclo: verde por 7 s, amarelo por 2 s, um instante de vermelho para todos e aí abre para a outra rua.</li>
+    <li>Os carros do trânsito param no vermelho e no amarelo (se ainda dá tempo) e deixam espaço entre os para-choques enquanto esperam.</li>
+    <li>Entrar no cruzamento com o sinal vermelho é <b>avançar o sinal</b>: multa de <span class="neg">R$ 60,00</span> (na sala, conta como radar). Na direção fácil do modo sozinho é só um aviso. Na autoescola, perde 15 pontos.</li>
+    <li>Com a sirene ligada, a viatura pode passar no sinal vermelho sem multa. Use <kbd>K</kbd> para ligar ou desligar a sirene.</li>
+    <li>Na autoescola, o instrutor avisa quando o próximo cruzamento tem semáforo, manda parar no vermelho e avisa quando abre o verde.</li>
+  </ul>
+</section>
+
+<section id="passeador">
+  <h2>PASSEADOR DE CACHORROS</h2>
+  <p>No solo, escolha <b>C · Passeador de cachorros</b> na tela inicial ou use <kbd>J</kbd> para trocar de modalidade. Escolha um, dois ou três cachorros no celular. A tecla <kbd>E</kbd> aceita o passeio com três. A cada novo passeio, o jogo sorteia os endereços dos tutores em quarteirões diferentes do circuito. Caminhe com WASD ou as setas e pare por um segundo junto a cada tutor para pegar o cachorro na guia.</p>
+  <p>Com o grupo reunido, siga o marcador pelas cinco paradas de um circuito que contorna três quarteirões. Pare por um segundo em cada uma e depois devolva cada cachorro ao seu tutor. O valor por cachorro depende da distância do percurso e é pago na devolução. O celular mostra quem está aguardando, na guia ou já foi entregue. O jogo salva o passeio em andamento. Para cancelar, use <kbd>C</kbd>.</p>
+</section>
+
+<section id="policia">
+  <h2>POLÍCIA</h2>
+  <ul>
+    <li>A polícia vem atrás de você quando você atropela alguém, passa no radar da escola ou bate numa viatura.</li>
+    <li>A viatura contorna os quarteirões para te alcançar. Depois de 25 s de perseguição vem uma segunda.</li>
+    <li><b>Pego:</b> com a viatura colada e o seu carro quase parado por pouco mais de 1 s. A multa é de <span class="neg">R$ 150,00</span> e o passageiro desce na blitz.</li>
+    <li><b>Despistou:</b> ficou bem longe de todas as viaturas por 6 s. Ganha <span class="aura">+15 de AURA</span>.</li>
+  </ul>
+</section>
+
+<section id="multas">
+  <h2>MULTAS E COBRANÇAS</h2>
+  <p>Estas são cobradas mesmo que você esteja sem dinheiro (o saldo pode passar do limite do fiado):</p>
+  <div class="tbl"><table>
+    <tr><th>Motivo</th><th>Valor</th></tr>
+    <tr><td>atropelar pedestre ou criança (e a polícia vem)</td><td class="neg">R$ 40,00</td></tr>
+    <tr><td>radar da zona escolar</td><td class="neg">R$ 60,00</td></tr>
+    <tr><td>avançar o sinal vermelho</td><td class="neg">R$ 60,00</td></tr>
+    <tr><td>pego pela polícia</td><td class="neg">R$ 150,00</td></tr>
+    <tr><td>guincho</td><td class="neg">R$ 120,00</td></tr>
+    <tr><td>assalto</td><td class="neg">30% a 60% do saldo, até R$ 200,00</td></tr>
+    <tr><td>franquia do seguro (carro roubado)</td><td class="neg">R$ 100,00</td></tr>
+    <tr><td>cancelar antes do embarque / largar o passageiro</td><td class="neg">R$ 5,00 / R$ 15,00</td></tr>
+  </table></div>
+</section>
+
+<section id="multi">
+  <h2>MULTIPLAYER</h2>
+  <ul>
+    <li>Na tela inicial, abra <b>Jogar com amigos</b>, escolha um apelido e <b>crie uma sala</b> ou entre com o código de 4 letras. Mande o link da barra de endereço para os amigos. Cabem até 4 pessoas.</li>
+    <li><b>Espera:</b> dá para dar voltas pela cidade, mas não há chamadas e o posto, a oficina e o lava jato ficam fechados (o guincho é grátis). Quem criou a sala aperta <kbd>Enter</kbd> para começar.</li>
+    <li><b>Turno:</b> depois de um 3-2-1 todos largam iguais, com <span class="money">R$ 150,00</span> e carro novo. O turno vai das 07:00 às 19:00 em 12 minutos reais.</li>
+    <li><b>Chamadas:</b> são as mesmas para todos (sempre há o número de jogadores mais duas chamadas abertas). <kbd>E</kbd> vai buscar a destacada e <kbd>Q</kbd> passa para a próxima. Ir buscar não reserva nada: leva quem parar ao lado do passageiro primeiro.</li>
+    <li>O placar no canto superior esquerdo mostra o saldo dos jogadores ao vivo. Você vê os veículos dos rivais e pode esbarrar neles.</li>
+    <li>Na pausa, use <b>Copiar o link da sala</b> para convidar alguém. Seu carro fica parado enquanto os outros continuam jogando. Se o dono sair, quem está na sala há mais tempo assume.</li>
+    <li>Se a conexão cair, o jogo tenta reconectar automaticamente. Durante o turno, a sala só admite de volta quem já estava participando.</li>
+    <li><b>Caixa:</b> o dinheiro é controlado pela sala. Ela paga as corridas com o multiplicador do seu veículo e confere cada compra e cada multa.</li>
+    <li><b>19:00:</b> quem está com passageiro tem 30 s de prorrogação para entregar. Depois vem o ranking (maior lucro; empate decidido pela nota média). O dono pode pedir <b>revanche</b>.</li>
+    <li>Polícia, bandidos, bichos e colégios são só de cada jogador (os outros não veem), mas as multas e o assalto saem do seu caixa na sala.</li>
+    <li>O dinheiro da sala não mexe no seu save do modo sozinho.</li>
+  </ul>
+</section>
+
+<section id="pega">
+  <h2>PEGA</h2>
+  <ul>
+    <li><kbd>X</kbd> chama um pega. A largada é onde você está, e a sala sorteia a chegada longe dali.</li>
+    <li>Os outros têm 20 s para ir até a bandeira de largada e apertar <kbd>X</kbd>. Precisa de pelo menos 2 pilotos. Quem está com passageiro não entra.</li>
+    <li>3-2-1 com os carros travados, e depois é chegar primeiro na bandeira quadriculada. A seta rosa mostra o caminho.</li>
+    <li>Durante o turno, cada piloto paga <span class="neg">R$ 20,00</span> de inscrição e o primeiro a chegar leva o pote inteiro. Se ninguém chegar em 150 s, a inscrição volta. Fora do turno é só pela glória.</li>
+    <li>Quem desiste no meio (<kbd>X</kbd> de novo) perde a inscrição. Durante o pega você não pega passageiro.</li>
+    <li>Vencer dá <span class="aura">+5 de AURA</span>.</li>
+  </ul>
+</section>
+</main>
+</div>
+</body>
+</html>
