@@ -146,6 +146,16 @@ const driving = createDrivingInput();
 const input = driving.state;
 function clearInput() { driving.clear(); }
 const canDrive = () => mode === 'play' && !document.hidden;
+let cursorTimer;
+function setCursorHidden(hidden) {
+  clearTimeout(cursorTimer);
+  document.documentElement.classList.toggle('cursor-hidden', hidden);
+}
+window.addEventListener('mousemove', () => {
+  if (!canDrive()) return;
+  setCursorHidden(false);
+  cursorTimer = setTimeout(() => setCursorHidden(true), 2000);
+});
 function suspendInput() { Patrulha.setSiren(false); clearInput(); writeSave(); }
 window.addEventListener('pagehide', suspendInput);
 document.addEventListener('visibilitychange', () => {
@@ -231,6 +241,7 @@ function startGame() {
   $('title').classList.add('hidden');
   $('hud').classList.remove('hidden');
   mode = 'play';
+  setCursorHidden(true);
   clearInput();
   if (Garagem.enabled) {
     Garagem.buildHome();
@@ -350,6 +361,7 @@ function showModal(title, sub, items, closeLabel, noMoney) {
     `<button class="mbtn ghost" data-close="1"><span><kbd>Esc</kbd> ${closeLabel || 'Sair'}</span></button>`;
   modal.classList.remove('hidden');
   mode = 'menu';
+  setCursorHidden(false);
   $('hud').inert = true;
   modalBox.focus();
   Police.sirenVol(0); Patrulha.sound?.sirenVol(0);
@@ -359,6 +371,7 @@ function showModal(title, sub, items, closeLabel, noMoney) {
 function closeModal() {
   modal.classList.add('hidden');
   mode = 'play';
+  setCursorHidden(true);
   if (Patrulha.sirenOn) Patrulha.sound.sirenVol(0);
   $('hud').inert = false;
   clearInput();
