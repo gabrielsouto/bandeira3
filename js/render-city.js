@@ -2,14 +2,13 @@
 // Toda a "arte" é gerada por código: chão, ruas, telhados, árvores, carros e ícones.
 
 const PAL = {
-  asphalt: '#3b3e45', asphalt2: '#35383f', asphalt3: '#43464d',
-  line: '#d9b84a', white: '#d6d8dc',
-  side: '#a29c90', side2: '#958f84', side3: '#aca699', curb: '#6f6a62',
-  grass: '#4f7f3b', grass2: '#5b8c44', grass3: '#46723a',
-  water: '#2c5a88', water2: '#3a6c9e', foam: '#8fbfe0',
+  asphalt: '#575952', asphalt2: '#565850', asphalt3: '#5a5c55',
+  line: '#f0cd7b', white: '#f4ecda',
+  side: '#dcc8a4', side2: '#d1bc99', side3: '#dfcda9', curb: '#bea985',
+  grass: '#83a962', grass2: '#87ac66', grass3: '#7ea45e',
+  water: '#58aaa6', water2: '#69b6ad', foam: '#bce4ca',
   plaza: '#b1a78f', plaza2: '#a39a83',
   lot: '#585b61', lot2: '#4f5258',
-  tree: '#2f6b2c', tree2: '#3f8a36', tree3: '#214f20',
 };
 const ROOFS = ['#8c6e5a', '#7d7f86', '#a39a86', '#6b7a8f', '#9a5a4e', '#5f6b5a',
   '#b0a48a', '#857065', '#6f6f78', '#9c8f7a', '#7a6a8a', '#a8836a'];
@@ -230,20 +229,20 @@ function makeCarSprites(body, isPlayer, art = 'car', bag = false) {
 function drawRoof(g, b, r) {
   const x = b.x0 * 16, y = b.y0 * 16, w = (b.x1 - b.x0 + 1) * 16, h = (b.y1 - b.y0 + 1) * 16;
   const base = ROOFS[b.color];
-  g.fillStyle = shade(base, -0.45); g.fillRect(x, y, w, h);
+  g.fillStyle = shade(base, -0.22); g.fillRect(x, y, w, h);
   g.fillStyle = shade(base, 0.15); g.fillRect(x + 1, y + 1, w - 2, h - 2);
   g.fillStyle = shade(base, -0.12); g.fillRect(x + 3, y + 3, w - 6, h - 6);
   g.fillStyle = base; g.fillRect(x + 4, y + 4, w - 7, h - 7);
   const ix = x + 4, iy = y + 4, iw = w - 7, ih = h - 7;
   if (b.style === 1) {
-    g.fillStyle = shade(base, -0.1);
-    for (let k = 2; k < ih; k += 3) g.fillRect(ix, iy + k, iw, 1);
+    g.fillStyle = shade(base, -0.035);
+    for (let k = 2; k < ih; k += 9) g.fillRect(ix, iy + k, iw, 1);
   } else if (b.style === 2) {
-    g.fillStyle = shade(base, -0.08);
-    for (let k = 6; k < iw; k += 8) g.fillRect(ix + k, iy, 1, ih);
-    for (let k = 6; k < ih; k += 8) g.fillRect(ix, iy + k, iw, 1);
+    g.fillStyle = shade(base, -0.04);
+    for (let k = 6; k < iw; k += 16) g.fillRect(ix + k, iy, 1, ih);
+    for (let k = 6; k < ih; k += 16) g.fillRect(ix, iy + k, iw, 1);
   } else {
-    speckle(g, ix, iy, iw, ih, r, [shade(base, -0.07), shade(base, 0.07)], Math.floor(iw * ih / 14));
+    speckle(g, ix, iy, iw, ih, r, [shade(base, -0.07), shade(base, 0.07)], Math.floor(iw * ih / 120));
   }
   if (b.style === 3 && iw >= 40 && ih >= 40) { // heliponto
     const cx = ix + (iw >> 1), cy = iy + (ih >> 1);
@@ -252,7 +251,7 @@ function drawRoof(g, b, r) {
     g.fillRect(cx - 4, cy - 5, 2, 11); g.fillRect(cx + 3, cy - 5, 2, 11); g.fillRect(cx - 2, cy - 1, 5, 2);
     return;
   }
-  const n = Math.floor(iw * ih / 450) + 1;
+  const n = Math.floor(iw * ih / 1200) + 1;
   for (let k = 0; k < n; k++) {
     const kind = r();
     const ax = ix + 2 + Math.floor(r() * Math.max(1, iw - 12));
@@ -275,14 +274,6 @@ function drawRoof(g, b, r) {
       g.fillStyle = '#b4c2cc'; g.fillRect(ax + 3, ay + 3, 2, 1);
     }
   }
-}
-
-function drawTree(g, px, py, r) {
-  const cx = px + 8, cy = py + 8;
-  pxCircle(g, cx, cy, 6, PAL.tree3);
-  pxCircle(g, cx, cy, 5, PAL.tree);
-  pxCircle(g, cx - 1, cy - 1, 3, PAL.tree2);
-  speckle(g, cx - 5, cy - 5, 10, 10, r, [PAL.tree3, PAL.tree2], 6);
 }
 
 function drawHome(g, p) {
@@ -397,12 +388,12 @@ function prerenderCity(city) {
     switch (t) {
       case T.ROAD:
         g.fillStyle = PAL.asphalt; g.fillRect(px, py, 16, 16);
-        speckle(g, px, py, 16, 16, r, [PAL.asphalt2, PAL.asphalt3], 14);
+        speckle(g, px, py, 16, 16, r, [PAL.asphalt2, PAL.asphalt3], 3);
         break;
       case T.SIDEWALK:
         g.fillStyle = PAL.side; g.fillRect(px, py, 16, 16);
         g.fillStyle = PAL.side2;
-        g.fillRect(px, py, 16, 1); g.fillRect(px, py, 1, 16); g.fillRect(px, py + 8, 16, 1); g.fillRect(px + 8, py, 1, 16);
+        g.fillRect(px, py, 16, 1); g.fillRect(px, py, 1, 16);
         speckle(g, px, py, 16, 16, r, [PAL.side2, PAL.side3], 5);
         g.fillStyle = PAL.curb;
         if (get(x + 1, y) === T.ROAD) g.fillRect(px + 14, py, 2, 16);
@@ -411,13 +402,17 @@ function prerenderCity(city) {
         if (get(x, y - 1) === T.ROAD) g.fillRect(px, py, 16, 2);
         break;
       case T.GRASS: case T.TREE:
+        if (city.onCoast(x, y)) {
+          g.fillStyle = '#f3d290'; g.fillRect(px, py, 16, 16);
+          break;
+        }
         g.fillStyle = PAL.grass; g.fillRect(px, py, 16, 16);
-        speckle(g, px, py, 16, 16, r, [PAL.grass2, PAL.grass3], 18);
+        speckle(g, px, py, 16, 16, r, [PAL.grass2, PAL.grass3], 5);
         break;
       case T.WATER:
         g.fillStyle = PAL.water; g.fillRect(px, py, 16, 16);
         g.fillStyle = PAL.water2;
-        for (let k = 0; k < 3; k++) g.fillRect(px + Math.floor(r() * 12), py + Math.floor(r() * 16), 4, 1);
+        if (r() < .18) g.fillRect(px + 2, py + Math.floor(r() * 14), 6 + Math.floor(r() * 7), 1);
         g.fillStyle = PAL.foam;
         if (get(x + 1, y) !== T.WATER) g.fillRect(px + 15, py, 1, 16);
         if (get(x - 1, y) !== T.WATER) g.fillRect(px, py, 1, 16);
@@ -467,16 +462,7 @@ function prerenderCity(city) {
 
   for (const p of city.places) drawPlace(g, p, r);
 
-  // sombras (prédios e árvores) antes dos telhados
-  g.fillStyle = 'rgba(0,0,0,0.32)';
-  for (const b of city.buildings)
-    g.fillRect(b.x0 * 16 + 5, b.y0 * 16 + 5, (b.x1 - b.x0 + 1) * 16, (b.y1 - b.y0 + 1) * 16);
-  const trees = [];
-  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (get(x, y) === T.TREE) trees.push([x * 16, y * 16]);
-  for (const [px, py] of trees) pxCircle(g, px + 11, py + 11, 6, 'rgba(0,0,0,0.28)');
-
   for (const b of city.buildings) drawRoof(g, b, r);
-  for (const [px, py] of trees) drawTree(g, px, py, r);
   return cv;
 }
 

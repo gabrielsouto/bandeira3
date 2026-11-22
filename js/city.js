@@ -239,6 +239,7 @@ function generateCity(seed) {
   return {
     seed, W, H, tiles, xs, ys, wx, wy, NX, NY, hSeg, vSeg, rowKind, colKind, rowDir, colDir, buildings, places, blocks, curbs, pedTiles, roadTiles,
     get, exits, entries, links, canGo,
+    onCoast(tx, ty) { return !inCore(tx, ty); },
     solid(tx, ty) { const t = get(tx, ty); return t === T.BUILDING || t === T.WATER || t === T.TREE; },
     tileAtPx(px, py) { return get(Math.floor(px / 16), Math.floor(py / 16)); },
     placeAt(px, py) {

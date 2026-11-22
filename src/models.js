@@ -22,7 +22,7 @@ function cabin(){
   const faces=[[0,1,5,4],[1,2,6,5],[2,3,7,6],[3,0,4,7],[4,5,6,7]];
   const pos=[],col=[];
   faces.forEach(([a,b,c,d],i)=>{
-    const color=new THREE.Color(['#416370','#384f5a','#648d98','#385866','#47616a'][i]);
+    const color=new THREE.Color(['#54818e','#385764','#8ab7c2','#466773','#587481'][i]);
     for(const v of [a,b,c,a,c,d]){pos.push(...p[v]);col.push(color.r,color.g,color.b);}
   });
   g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setAttribute('color',new THREE.Float32BufferAttribute(col,3));g.computeVertexNormals();return g;
@@ -41,7 +41,8 @@ function vehicleGeometry(color,taxi){
   box(0,3.1,0,20.2,2.6,9.3,color);
   box(7.25,4.15,0,5.5,.6,9.05,color);box(-8.15,4.1,0,3.65,.55,9,color);
   parts.push(cabin());
-  box(-1,7.3,0,6.2,.43,7.5,color);
+  const roofTint=new THREE.Color(color).lerp(new THREE.Color('#cfdae0'),.075);
+  box(-1,7.3,0,6.2,.43,7.5,roofTint);
   for(const side of [-1,1]){
     box(-1.05,5.55,side*4.07,.52,2.76,.52,color);
     box(-.5,3.6,side*4.68,18.8,.56,.12,taxi?'#224959':color);

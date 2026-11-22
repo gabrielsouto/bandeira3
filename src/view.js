@@ -5,23 +5,29 @@ import { vehicleModel, personModel, posePerson } from './fleet.js';
 
 // A simulação em js/main.js continua dona de todos os estados do jogo.
 // O desenho de cada frame envia exatamente os atores escolhidos pela modalidade.
-export function create({canvas, surface, atlas, city, overhead}) {
+export function create({canvas, surface, atlas, city, overhead, lamps}) {
   const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFShadowMap;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.6));
   const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(overhead?40:60,1,.45,5500);
   const day=new THREE.Color('#a9d8e6'),night=new THREE.Color('#16263e');
   scene.background=day.clone();scene.fog=new THREE.Fog(day,420,2300);
   const ambient=new THREE.HemisphereLight('#fffae6','#9fabb4',1.6);
-  const sun=new THREE.DirectionalLight('#ffe3b2',1.6);sun.position.set(-65,90,35);scene.add(sun,ambient);
+  const sun=new THREE.DirectionalLight('#ffe2ab',2.05);
+  sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);
+  const reach=overhead?330:250;
+  Object.assign(sun.shadow.camera,{left:-reach,right:reach,top:reach,bottom:-reach,near:1,far:1250});
+  sun.shadow.camera.updateProjectionMatrix();sun.shadow.bias=-.00016;sun.shadow.normalBias=.16;
+  scene.add(sun,sun.target,ambient);
   const props=streetProps(scene);
-  const town=makeCity(scene,city,atlas,surface);
+  const town=makeCity(scene,city,atlas,surface,lamps);
   const sky=new THREE.Mesh(new THREE.SphereGeometry(3900,28,16),new THREE.ShaderMaterial({
     side:THREE.BackSide,depthWrite:false,uniforms:{dark:{value:0}},
     vertexShader:'varying vec3 dir; void main(){dir=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
     fragmentShader:`varying vec3 dir;uniform float dark;void main(){
-      vec3 d=normalize(dir);float t=smoothstep(-.04,.60,d.y);
-      vec3 day=mix(vec3(.79,.83,.80),vec3(.22,.57,.80),t);
-      float disk=smoothstep(.9991,.9995,dot(d,normalize(vec3(-1.,.31,-.45))));
+      vec3 d=normalize(dir);float t=smoothstep(-.10,.36,d.y);
+      vec3 day=mix(vec3(.94,.86,.71),vec3(.15,.55,.80),t);
+      float disk=smoothstep(.9991,.9995,dot(d,normalize(vec3(-1.,.68,-.45))));
       vec3 c=mix(day,vec3(1.,.95,.78),disk);
       gl_FragColor=vec4(mix(c,mix(vec3(.025,.044,.08),vec3(.006,.012,.03),t),dark),1.);
       #include <colorspace_fragment>
@@ -53,6 +59,10 @@ export function create({canvas, surface, atlas, city, overhead}) {
     const da=Math.atan2(Math.sin(p.a-heading),Math.cos(p.a-heading));
     heading=jumped?p.a:heading+da*(1-Math.exp(-Math.max(0,state.dt)*8));
     prevX=p.x;prevZ=p.y;
+    const ahead=overhead?0:70;
+    const focusX=Math.round((p.x+Math.cos(heading)*ahead)/2)*2;
+    const focusZ=Math.round((p.y+Math.sin(heading)*ahead)/2)*2;
+    sun.target.position.set(focusX,0,focusZ);sun.position.set(focusX-420,286,focusZ-189);
     const air=state.flightHeight;
     if(overhead){
       const span=Math.max(195,Math.min(320,innerHeight/2.6));
@@ -70,8 +80,9 @@ export function create({canvas, surface, atlas, city, overhead}) {
     camera.updateMatrixWorld();
     ui.clearRect(0,0,width,height);
     if(lastDark!==state.dark){
+      sun.shadow.autoUpdate=state.dark<.99;
       lastDark=state.dark;scene.background.copy(day).lerp(night,state.dark);scene.fog.color.copy(scene.background);
-      sun.intensity=1.6-1.32*state.dark;ambient.intensity=1.6-1.08*state.dark;
+      sun.intensity=2.05-1.77*state.dark;ambient.intensity=1.4-.88*state.dark;
     }
   }
   function vehicle(spr,x,z,a,brake,isPlayer,isPolice,alpha){
@@ -82,6 +93,7 @@ export function create({canvas, surface, atlas, city, overhead}) {
     let model=pool.models[pool.used++];
     if(!model){
       model=vehicleModel(spr,isPolice);
+      model.traverse(part=>{if(part.isMesh)part.castShadow=true;});
       const shadow=new THREE.Mesh(new THREE.CircleGeometry(1,20).rotateX(-Math.PI/2),
         new THREE.MeshBasicMaterial({color:'#151927',transparent:true,opacity:.23,depthWrite:false}));
       shadow.scale.set(spr.img.width*.53,1,spr.img.height*.55);

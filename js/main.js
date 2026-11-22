@@ -153,8 +153,8 @@ document.addEventListener('visibilitychange', () => {
 });
 // teclas digitadas em campos de texto (apelido, código da sala) não comandam o carro
 const typing = (e) => e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement;
-const nativeActivation = (e) => mode !== 'play' && (e.code === 'Enter' || e.code === 'Space') &&
-  e.target.closest?.('button, a, summary');
+const nativeActivation = (e) => (e.code === 'Enter' || e.code === 'Space') &&
+  e.target.closest?.('button, a, summary') && (mode !== 'play' || e.target.matches(':focus-visible'));
 window.addEventListener('keydown', (e) => {
   if (typing(e) || nativeActivation(e)) return;
   if (KEYMAP[e.code] && canDrive()) {
@@ -684,7 +684,7 @@ function drawCar(spr, x, y, a, braking) {
   world3D.vehicle(spr, x, y, a, braking, spr === SPR.player, spr === Police.spr, ctx.globalAlpha);
 }
 
-const world3D = BandeiraView.create({ canvas: $('world3d'), surface: canvas, atlas: mapCanvas, city, overhead });
+const world3D = BandeiraView.create({ canvas: $('world3d'), surface: canvas, atlas: mapCanvas, city, overhead, lamps: Light.lamps });
 function render(dt) {
   const vw = view.w, vh = view.h;
   let cx = cam.x - vw / 2, cy = cam.y - vh / 2;

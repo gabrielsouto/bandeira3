@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { waterfront } from './waterfront.js';
 
 // O mapa pintado pelo jogo inclui oficinas, colégios, hospitais e as marcas dos pneus.
 // O mesmo sistema de coordenadas projeta a arte nos telhados e no chão.
@@ -10,7 +11,7 @@ function texture(canvas) {
   t.generateMipmaps = false;
   return t;
 }
-export function makeCity(scene, city, atlas, frame) {
+export function makeCity(scene, city, atlas, frame, lamps) {
   const width=atlas.width, depth=atlas.height;
   const hiddenBlocks = {value:new THREE.Vector4(-1,-1,-1,-1)};
   const blockVertex = 'attribute float blockId; varying float id;';
@@ -18,7 +19,7 @@ export function makeCity(scene, city, atlas, frame) {
   const uniforms={hiddenBlocks,
     atlas:{value:texture(atlas)}, localMap:{value:texture(frame)},
     size:{value:new THREE.Vector2(width,depth)}, mapRegion:{value:new THREE.Vector4()},
-    night:{value:0}, sea:{value:new THREE.Color('#37678c')}
+    night:{value:0}, sea:{value:new THREE.Color('#58aaa6')}
   };
   const painted=new THREE.ShaderMaterial({
     uniforms, vertexShader:blockVertex+`varying vec2 world;
@@ -37,6 +38,13 @@ export function makeCity(scene, city, atlas, frame) {
   painted.defaultAttributeValues.blockId=[0];
   const ocean=new THREE.Mesh(new THREE.PlaneGeometry(13000,13000).rotateX(-Math.PI/2),painted);
   ocean.position.set(width/2,0,depth/2);scene.add(ocean);
+  // O chão pintado contém os objetivos do jogo. A camada transparente recebe
+  // a sombra real sem trocar a textura nem apagar as luzes dos faróis à noite.
+  const shade=new THREE.ShadowMaterial({color:'#433d36',opacity:.32,depthWrite:false,
+    polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-2});
+  const receiver=new THREE.Mesh(ocean.geometry,shade);
+  receiver.position.copy(ocean.position);receiver.receiveShadow=true;scene.add(receiver);
+  const refreshCoast=waterfront(scene,city,lamps);
   const heightMap=new Float32Array(city.W*city.H);
   const palette=['#e1b497','#a8c4be','#b18c85','#d3be9f','#9eaf92','#92b6c2','#deab87','#a1aaa8'];
   const positions=[],colors=[],uvs=[],roof=[],wallIds=[],roofIds=[];
@@ -51,11 +59,12 @@ export function makeCity(scene, city, atlas, frame) {
     nextId++;
     const x=b.x0*16,z=b.y0*16,X=(b.x1+1)*16,Z=(b.y1+1)*16;
     const color=new THREE.Color(palette[b.color%palette.length]);
-    wall([x,0,z],[X,0,z],[X,h,z],[x,h,z],color,X-x,h);
+    const north=color.clone().multiplyScalar(1.08), east=color.clone().multiplyScalar(.75);
+    wall([x,0,z],[X,0,z],[X,h,z],[x,h,z],north,X-x,h);
     wall([X,0,Z],[x,0,Z],[x,h,Z],[X,h,Z],color,X-x,h);
-    const side=color.clone().multiplyScalar(.79);
+    const side=color.clone().multiplyScalar(1.16);
     wall([x,0,Z],[x,0,z],[x,h,z],[x,h,Z],side,Z-z,h);
-    wall([X,0,z],[X,0,Z],[X,h,Z],[X,h,z],side,Z-z,h);
+    wall([X,0,z],[X,0,Z],[X,h,Z],[X,h,z],east,Z-z,h);
     for(const p of [[x,h,z],[x,h,Z],[X,h,Z],[x,h,z],[X,h,Z],[X,h,z]]){roof.push(...p);roofIds.push(nextId);}
     for(let j=b.y0;j<=b.y1;j++)for(let i=b.x0;i<=b.x1;i++){heightMap[i+j*city.W]=h;ids[i+j*city.W]=nextId;}
   }
@@ -84,12 +93,13 @@ export function makeCity(scene, city, atlas, frame) {
     walls.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));
     const tops=new THREE.BufferGeometry();tops.setAttribute('position',new THREE.Float32BufferAttribute(roof,3));
     tops.setAttribute('blockId',new THREE.Float32BufferAttribute(roofIds,1));
-    scene.add(new THREE.Mesh(walls,facade),new THREE.Mesh(tops,painted));
+    const skyline=new THREE.Mesh(walls,facade), rooftops=new THREE.Mesh(tops,painted);
+    skyline.castShadow=rooftops.castShadow=true;scene.add(skyline,rooftops);
     positions.length=colors.length=uvs.length=roof.length=wallIds.length=roofIds.length=0;
   }
   surfaces();
   const treeTiles=[];
-  for(let z=0;z<city.H;z++)for(let x=0;x<city.W;x++)if(city.get(x,z)===5)treeTiles.push([x,z]);
+  for(let z=0;z<city.H;z++)for(let x=0;x<city.W;x++)if(city.get(x,z)===5 && !city.onCoast(x,z))treeTiles.push([x,z]);
   const leaves=new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1,0),new THREE.MeshLambertMaterial({flatShading:true}),treeTiles.length);
   const trunks=new THREE.InstancedMesh(new THREE.CylinderGeometry(1.1,1.5,1,7),new THREE.MeshLambertMaterial({color:'#896543'}),treeTiles.length);
   const dummy=new THREE.Object3D();
@@ -102,7 +112,7 @@ export function makeCity(scene, city, atlas, frame) {
     });
     leaves.instanceMatrix.needsUpdate=trunks.instanceMatrix.needsUpdate=true;
   }
-  syncTrees();scene.add(trunks,leaves);
+  syncTrees();trunks.castShadow=leaves.castShadow=true;scene.add(trunks,leaves);
   let places=city.places.length,fw=frame.width,fh=frame.height;
   function sync(x,z,dark){
     if(city.places.length!==places){
@@ -110,7 +120,7 @@ export function makeCity(scene, city, atlas, frame) {
       if(home){
         const a=home.tile(0,1),b=home.tile(2,2);
         building({x0:Math.min(a.x,b.x),x1:Math.max(a.x,b.x),y0:Math.min(a.y,b.y),y1:Math.max(a.y,b.y),color:3},12);
-        surfaces();syncTrees();uniforms.atlas.value.needsUpdate=true;
+        surfaces();syncTrees();refreshCoast();uniforms.atlas.value.needsUpdate=true;
       }
       places=city.places.length;
     }
@@ -118,7 +128,7 @@ export function makeCity(scene, city, atlas, frame) {
       uniforms.localMap.value.dispose();uniforms.localMap.value=texture(frame);fw=frame.width;fh=frame.height;
     }
     uniforms.localMap.value.needsUpdate=true;
-    uniforms.mapRegion.value.set(x,z,fw,fh);uniforms.night.value=dark;
+    uniforms.mapRegion.value.set(x,z,fw,fh);uniforms.night.value=dark;shade.opacity=.32*(1-dark);receiver.visible=dark<.99;
   }
   // Oculta apenas os prédios que atravessam a linha de visão entre a câmera e o veículo.
   function clearSight(x,z,eye){
