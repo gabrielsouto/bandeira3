@@ -153,8 +153,8 @@ document.addEventListener('visibilitychange', () => {
 });
 // teclas digitadas em campos de texto (apelido, código da sala) não comandam o carro
 const typing = (e) => e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement;
-const nativeActivation = (e) => (e.code === 'Enter' || e.code === 'Space') &&
-  e.target.closest?.('button, a, summary') && (mode !== 'play' || e.target.matches(':focus-visible'));
+const nativeActivation = (e) => mode !== 'play' && (e.code === 'Enter' || e.code === 'Space') &&
+  e.target.closest?.('button, a, summary');
 window.addEventListener('keydown', (e) => {
   if (typing(e) || nativeActivation(e)) return;
   if (KEYMAP[e.code] && canDrive()) {

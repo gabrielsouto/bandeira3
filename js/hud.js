@@ -33,11 +33,6 @@ const HUD = {
     this.el.mm.width = city.W * 2; this.el.mm.height = city.H * 2;
     this.mmCtx = this.el.mm.getContext('2d');
     this.mmCtx.imageSmoothingEnabled = false;
-    const dashToggle = $('dash-toggle');
-    dashToggle.addEventListener('click', () => {
-      const open = $('dash').classList.toggle('expanded');
-      dashToggle.setAttribute('aria-expanded', String(open));
-    });
     $('phone').addEventListener('click', (e) => {
       const b = e.target.closest('[data-act]');
       if (!b || !canDrive()) return;
@@ -63,10 +58,6 @@ const HUD = {
     setBar(e.wear, c.wear, c.wear > 70 ? '#ff4d4d' : c.wear > 40 ? '#ffb020' : '#7fb2ff');
     const showTemp = !pedal && (c.problems.overheat || Care.overheated);
     e.tempwrap.style.display = showTemp ? '' : 'none';
-    e.fuel.closest('.bar').classList.toggle('needs-attention', f < (pedal ? LEGS_TIRED : 25));
-    e.hp.closest('.bar').classList.toggle('needs-attention', c.health < 50);
-    e.wear.closest('.bar').classList.toggle('needs-attention', c.wear > 65);
-    e.tempwrap.classList.toggle('needs-attention', showTemp);
     if (showTemp) setBar(e.temp, (c.temp - 40) / 70 * 100, Care.overheated ? '#ff4d4d' : '#ffb020');
     const offer = activeJob().offer;
     e.offerTime.hidden = !offer || !this.showOfferTime;
@@ -169,7 +160,7 @@ const HUD = {
       const ns = Rides.nearestSurge(player.x, player.y);
       return `<div class="ph-status"><span class="dot"></span>ONLINE</div><div class="ph-muted">Procurando corridas…</div>` +
         (ns ? `<div class="ph-surge">Dinâmica <b>${multStr(ns.mult)}</b> ${ns.d < 1 ? 'bem aqui!' : 'a ' + kmStr(ns.d)}</div>` : '') +
-        `<details class="ph-stats"><summary>Resumo do turno</summary>Corridas: ${S.rides}<br>Total ganho: ${fmtMoney(S.earned)}</details>`;
+        `<div class="ph-stats">Corridas: ${S.rides}<br>Total ganho: ${fmtMoney(S.earned)}</div>`;
     }
     if (st === 'offer') {
       const o = Rides.offer, pt = PTYPES[o.type];

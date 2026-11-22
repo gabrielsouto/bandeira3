@@ -21,19 +21,17 @@
     <div id="netinfo" class="hidden"></div>
   </div>
 
-  <details id="mapbox" class="panel">
-    <summary id="map-toggle" aria-label="Mapa e legenda"><span>Mapa</span><canvas id="minimap"></canvas></summary>
+  <div id="mapbox" class="panel">
+    <canvas id="minimap"></canvas>
     <div class="legend"><span><i class="lg-posto"></i>posto</span><span><i class="lg-ofi"></i>oficina</span><span><i class="lg-lava"></i>lava jato</span><span id="lgcasa"><i class="lg-casa"></i>casa</span><span id="lgrecarga"><i class="lg-recarga"></i>recarga</span><span id="lgfarmacia" class="hidden"><i class="lg-farmacia"></i>farmácia</span><span id="lgrest" class="hidden"><i class="lg-rest"></i>restaurante</span><span id="lghub" class="hidden"><i class="lg-hub"></i>galpão</span><span id="lgstops" class="hidden"><i class="lg-stops"></i>paradas</span><span id="lgsurge"><i class="lg-surge"></i>dinâmica</span><span><i class="lg-risk"></i>risco</span></div>
-  </details>
+  </div>
 
   <div id="dash" class="panel">
-    <button id="dash-toggle" type="button" aria-expanded="false" aria-controls="mechanics" title="Ver indicadores do veículo"><span id="speed"><span id="spd">0</span><small>km/h</small><span id="easytag" class="hidden">FÁCIL</span></span><span class="dash-label">Painel</span></button>
-    <div id="mechanics">
+    <div id="speed"><span id="spd">0</span><small>km/h</small><span id="easytag" class="hidden">FÁCIL</span></div>
     <div class="bar"><label id="fuellbl">COMBUST.</label><div class="track"><div id="fuelbar" class="fill"></div></div></div>
     <div class="bar"><label>LATARIA</label><div class="track"><div id="hpbar" class="fill"></div></div></div>
     <div class="bar"><label>DESGASTE</label><div class="track"><div id="wearbar" class="fill"></div></div></div>
     <div class="bar" id="tempwrap"><label>TEMP.</label><div class="track"><div id="tempbar" class="fill"></div></div></div>
-    </div>
     <div id="radio"></div>
     <div id="problems"></div>
   </div>
@@ -49,7 +47,7 @@
 
   <div id="roompanel" class="panel hidden"></div>
   <div id="toasts"></div>
-  <details id="controls"><summary>Controles</summary><div id="help">WASD/setas dirigir · Espaço freio de mão · E aceitar · Q recusar · C cancelar · H buzina · R rádio · J modalidade · B casa · O oficina · P posto · Esc ajuda e serviços</div></details>
+  <div id="help">WASD/setas dirigir · Espaço freio de mão · E aceitar · Q recusar · C cancelar · H buzina · R rádio · J modalidade · B casa · O oficina · P posto · Esc ajuda e serviços</div>
 </div>
 
 <div id="modal" class="hidden"><div id="modalbox" class="panel" role="dialog" aria-modal="true" aria-labelledby="modaltitle" tabindex="-1"></div></div>
